@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Navbar, Routines, Activities, LogIn } from "./";
+import { Navbar, Routines, Activities, LogIn, Register } from "./";
 import { fetchingActivities, fetchingRoutines } from "../api";
 
 const Main = () => {
@@ -37,6 +37,7 @@ const Main = () => {
           element={<Activities activities={activities} />}
         />
         <Route path="users/login" element={<LogIn />} />
+        <Route path="users/register" element={<Register />} />
       </Route>
     )
   );
