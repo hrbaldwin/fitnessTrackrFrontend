@@ -55,3 +55,20 @@ export async function RegisterUser(username, password) {
   console.log(result);
   return result.token;
 }
+
+export async function creatingActivity(token, name, description) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      description,
+    }),
+  };
+  const response = await fetch(`${BASE_URL}/api/activities`, options);
+  const result = await response.json();
+  return result;
+}
