@@ -12,6 +12,7 @@ import {
   LogIn,
   Register,
   CreateActivity,
+  CreateRoutine,
 } from "./";
 import { fetchingActivities, fetchingRoutines } from "../api";
 
@@ -46,6 +47,7 @@ const Main = () => {
         <Route path="users/login" element={<LogIn />} />
         <Route path="users/register" element={<Register />} />
         <Route path="createactivity" element={<CreateActivity />} />
+        <Route path="createroutine" element={<CreateRoutine />} />
       </Route>
     )
   );

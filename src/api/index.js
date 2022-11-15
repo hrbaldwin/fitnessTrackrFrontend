@@ -72,3 +72,20 @@ export async function creatingActivity(token, name, description) {
   const result = await response.json();
   return result;
 }
+
+export async function creatingRoutine(token, name, goal) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      goal,
+    }),
+  };
+  const response = await fetch(`${BASE_URL}/api/routines`, options);
+  const result = await response.json();
+  return result;
+}
