@@ -5,11 +5,12 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Navbar, Routines } from "./";
-import { fetchingRoutines } from "../api";
+import { Navbar, Routines, Activities } from "./";
+import { fetchingActivities, fetchingRoutines } from "../api";
 
 const Main = () => {
   const [routines, setRoutines] = useState([]);
+  const [activities, setActivities] = useState([])
 
   useEffect(() => {
     const fetchRoutines = async () => {
@@ -19,10 +20,19 @@ const Main = () => {
     fetchRoutines();
   }, []);
 
+  useEffect(() => {
+    const fetchActivities = async () => {
+      const returnedActivities = await fetchingActivities()
+      setActivities(returnedActivities)
+    };
+    fetchActivities();
+  }, [])
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
         <Route path="routines" element={<Routines routines={routines} />} />
+        <Route path="activities" element={<Activities activities={activities} />} />
       </Route>
     )
   );
