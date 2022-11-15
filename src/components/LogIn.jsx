@@ -1,34 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { logInUser } from "../api";
 
 const LogIn = () => {
-    async function handleSubmit(event) {
-        try {
-          event.preventDefault();
-          const username = event.target[0].value;
-          const password = event.target[1].value;
-          const registeredUser = await logInUser(username, password);
-          const token = registeredUser.token;
-          localStorage.removeItem("token");
-          localStorage.setItem("token", token);
-        } catch (error) {
-          console.log(error);
-        }
-      }
+  const [logInInfo, setLogInInfo] = useState({
+    username: "",
+    password: "",
+  });
 
+  const handleChange = (event) => {
+    setLogInInfo({ ...logInInfo, [event.target.name]: event.target.value });
+  };
 
-    return(
-        <>
-        <h3>Login below</h3>
-        <form let onSubmit>
-        <label>username:</label>
-        <input />
-        <label>password:</label>
-        <input />
-        </form>
-        </>
-    );
-    
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(logInInfo);
+    setLogInInfo({ username: "", password: "" });
+  };
+
+  return (
+    <>
+      <h3>Login below</h3>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">username:</label>
+        <input type="text" name="username" required />
+        <label htmlFor="password">password:</label>
+        <input type="password" name="password" required />
+        <button type="submit">submit</button>
+      </form>
+    </>
+  );
 };
 
 export default LogIn;

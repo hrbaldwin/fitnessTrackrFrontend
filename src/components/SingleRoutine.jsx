@@ -6,7 +6,8 @@ const SingleRoutine = (props) => {
 
   return (
     <>
-      <h3>{routine.name}</h3> <p>{routine.creatorName}</p>
+      <h3>{routine.name}</h3>
+      <p>{routine.creatorName}</p>
       <p>{routine.goal}</p>
     </>
   );
