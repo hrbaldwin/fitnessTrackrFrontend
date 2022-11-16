@@ -23,6 +23,8 @@ const LogIn = () => {
     const token = registeredUser.token;
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
+    localStorage.removeItem("username");
+    localStorage.setItem("username", username);
     setLogInInfo({ username: "", password: "" });
   };
 

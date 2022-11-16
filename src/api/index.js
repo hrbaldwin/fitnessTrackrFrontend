@@ -147,3 +147,23 @@ export async function EditRoutine(routineId, name, goal, isPublic, token) {
     console.error(error);
   }
 }
+
+export async function fetchingMyRoutines(username, token) {
+  try {
+    let options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const fetchingMyRoutinesUrl = await fetch(
+      `${BASE_URL}/api/users/${username}/routines`,
+      options
+    );
+    const fetchedMyRoutinesUrl = await fetchingMyRoutinesUrl.json();
+    return fetchedMyRoutinesUrl;
+  } catch (error) {
+    throw error;
+  }
+}

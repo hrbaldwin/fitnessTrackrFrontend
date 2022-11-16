@@ -13,16 +13,18 @@ import {
   Register,
   CreateActivity,
   CreateRoutine,
-  MyRoutines
+  MyRoutines,
 } from "./";
 import {
   fetchingActivities,
   fetchingRoutines,
   fetchingRoutinesForActivities,
+  fetchingMyRoutines,
 } from "../api";
 
 const Main = () => {
   const [routines, setRoutines] = useState([]);
+  const [myRoutines, setMyRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
   const [activityRoutines, setActivityRoutines] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -55,6 +57,15 @@ const Main = () => {
     };
     fetchRoutines();
   }, []);
+  useEffect(() => {
+    const fetchMyRoutines = async () => {
+      const token = localStorage.getItem("token");
+      const username = localStorage.getItem("username");
+      const myReturnedRoutines = await fetchingMyRoutines(username, token);
+      setMyRoutines(myReturnedRoutines);
+    };
+    fetchMyRoutines();
+  }, []);
 
   useEffect(() => {
     const fetchActivities = async () => {
@@ -81,7 +92,10 @@ const Main = () => {
         <Route path="users/register" element={<Register />} />
         <Route path="createactivity" element={<CreateActivity />} />
         <Route path="createroutine" element={<CreateRoutine />} />
-        <Route path="myroutines" element={<MyRoutines routines={routines}/>}/>
+        <Route
+          path="myroutines"
+          element={<MyRoutines routines={routines} myRoutines={myRoutines} />}
+        />
       </Route>
     )
   );
