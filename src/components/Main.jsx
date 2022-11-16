@@ -13,6 +13,7 @@ import {
   Register,
   CreateActivity,
   CreateRoutine,
+  MyRoutines
 } from "./";
 import {
   fetchingActivities,
@@ -80,6 +81,7 @@ const Main = () => {
         <Route path="users/register" element={<Register />} />
         <Route path="createactivity" element={<CreateActivity />} />
         <Route path="createroutine" element={<CreateRoutine />} />
+        <Route path="myroutines" element={<MyRoutines routines={routines}/>}/>
       </Route>
     )
   );
