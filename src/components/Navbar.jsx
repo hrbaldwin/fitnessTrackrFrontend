@@ -1,7 +1,8 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const isLoggedIn = props.isLoggedIn;
   return (
     <>
       <div id="navbar">
@@ -16,14 +17,33 @@ const Navbar = () => {
           {" "}
           <button> routines</button>{" "}
         </Link>
-        <Link to={"/users/login"}>
-          {" "}
-          <button>log in</button>{" "}
-        </Link>
-        <Link to={"/users/register"}>
-          {" "}
-          <button>sign up</button>{" "}
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <Link to={"/"}>
+              {" "}
+              <button>my routines</button>{" "}
+            </Link>
+            <Link to={"/createroutine"}>
+              {" "}
+              <button>create routine</button>{" "}
+            </Link>
+            <Link to={"/createactivity"}>
+              {" "}
+              <button>create activity</button>{" "}
+            </Link>
+          </>
+        ) : null}
+        {isLoggedIn ? (
+          <Link to={"/users/login"}>
+            {" "}
+            <button>log out</button>{" "}
+          </Link>
+        ) : (
+          <Link to={"/users/login"}>
+            {" "}
+            <button>log in</button>{" "}
+          </Link>
+        )}
       </div>
       <Outlet />
     </>

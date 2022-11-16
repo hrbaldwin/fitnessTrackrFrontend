@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { DeleteRoutine, EditRoutine } from "../api";
 
-
 const SingleRoutine = (props) => {
   const routine = props.routine;
-  let [updateRoutine, setUpdateRoutine]= useState({
-    name:"",
-    goal:"",
-    isPublic:null,
-  })
+  let [updateRoutine, setUpdateRoutine] = useState({
+    name: "",
+    goal: "",
+    isPublic: null,
+  });
   let [toggleActivities, setToggleActivities] = useState(true);
 
   //   console.log(routine);
@@ -19,25 +18,27 @@ const SingleRoutine = (props) => {
     const toDelete = e.target.id;
 
     const token = localStorage.getItem("token");
-    console.log(e)
+    console.log(e);
     const deleted = await DeleteRoutine(toDelete, token);
   }
   const handleChange = () => {
     return setToggleActivities(!toggleActivities);
   };
-  async function handleChange2(e)  {
-    e.preventDefault()
-    const toEdit = e.target.id
+  async function handleChange2(e) {
+    e.preventDefault();
+    const toEdit = e.target.id;
     const token = localStorage.getItem("token");
-    const edited = await EditRoutine(toEdit, token)
-    return edited
+    const edited = await EditRoutine(toEdit, token);
+    return edited;
   }
 
   return (
     <>
-      <h3>{routine.name}</h3>
-      <p>{routine.creatorName}</p>
-      <p>{routine.goal}</p>
+      <div className="singleRoutine">
+        <h3>{routine.name}</h3>
+        <p>{routine.creatorName}</p>
+        <p>{routine.goal}</p>
+      </div>
       <div>
         <button onClick={handleChange}>see activities for this routine</button>
         {routine && routine.activities.length
@@ -54,8 +55,15 @@ const SingleRoutine = (props) => {
           : null}
       </div>
       <div>
-        <button onClick={handleDelete} id={routine.id ? `${routine.id}`:null} >Delete Routine</button>
-        <button onClick={handleChange2} id={routine.id ? `${routine.id}`:null}>Edit Routine</button>
+        <button onClick={handleDelete} id={routine.id ? `${routine.id}` : null}>
+          Delete Routine
+        </button>
+        <button
+          onClick={handleChange2}
+          id={routine.id ? `${routine.id}` : null}
+        >
+          Edit Routine
+        </button>
       </div>
     </>
   );

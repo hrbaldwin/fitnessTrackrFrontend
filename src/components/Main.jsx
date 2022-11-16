@@ -24,6 +24,7 @@ const Main = () => {
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
   const [activityRoutines, setActivityRoutines] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // useEffect(() => {
   //   const fetchRoutinesForActivities = async () => {
@@ -34,6 +35,17 @@ const Main = () => {
   //   };
   //   fetchRoutinesForActivities();
   // }, []);
+  useEffect(() => {
+    const checkToken = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    };
+    checkToken();
+  }, []);
 
   useEffect(() => {
     const fetchRoutines = async () => {
@@ -53,7 +65,7 @@ const Main = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Navbar />}>
+      <Route path="/" element={<Navbar isLoggedIn={isLoggedIn} />}>
         <Route path="routines" element={<Routines routines={routines} />} />
         <Route
           path="activities"

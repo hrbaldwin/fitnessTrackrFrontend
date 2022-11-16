@@ -6,14 +6,21 @@ const Routines = (props) => {
   // console.log(routines, "routines");
   return (
     <>
-      <h2>Routines</h2>
-      {routines.length ? (
-        routines.map((routine) => {
-          return <SingleRoutine routine={routine} key={`routine-id-${routine.id}`}/>;
-        })
-      ) : (
-        <div>loading routines...</div>
-      )}
+      <div className="routinesColumn">
+        <h2>Routines</h2>
+        {routines.length ? (
+          routines.map((routine) => {
+            return (
+              <SingleRoutine
+                routine={routine}
+                key={`routine-id-${routine.id}`}
+              />
+            );
+          })
+        ) : (
+          <div>loading routines...</div>
+        )}
+      </div>
     </>
   );
 };
