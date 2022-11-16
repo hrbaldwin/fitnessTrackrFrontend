@@ -15,3 +15,6 @@ body {
   display: flex;
   align-items: center;
 }
+.routine{
+  border: 2px solid black;
+}

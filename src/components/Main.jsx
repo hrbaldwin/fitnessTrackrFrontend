@@ -25,15 +25,15 @@ const Main = () => {
   const [activities, setActivities] = useState([]);
   const [activityRoutines, setActivityRoutines] = useState([]);
 
-  useEffect(() => {
-    const fetchRoutinesForActivities = async () => {
-      const returnedActivityRoutines = await fetchingRoutinesForActivities(
-        activityId
-      );
-      setActivityRoutines(returnedActivityRoutines);
-    };
-    fetchRoutinesForActivities();
-  }, []);
+  // useEffect(() => {
+  //   const fetchRoutinesForActivities = async () => {
+  //     const returnedActivityRoutines = await fetchingRoutinesForActivities(
+  //       activityId
+  //     );
+  //     setActivityRoutines(returnedActivityRoutines);
+  //   };
+  //   fetchRoutinesForActivities();
+  // }, []);
 
   useEffect(() => {
     const fetchRoutines = async () => {
