@@ -14,11 +14,26 @@ import {
   CreateActivity,
   CreateRoutine,
 } from "./";
-import { fetchingActivities, fetchingRoutines } from "../api";
+import {
+  fetchingActivities,
+  fetchingRoutines,
+  fetchingRoutinesForActivities,
+} from "../api";
 
 const Main = () => {
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [activityRoutines, setActivityRoutines] = useState([]);
+
+  useEffect(() => {
+    const fetchRoutinesForActivities = async () => {
+      const returnedActivityRoutines = await fetchingRoutinesForActivities(
+        activityId
+      );
+      setActivityRoutines(returnedActivityRoutines);
+    };
+    fetchRoutinesForActivities();
+  }, []);
 
   useEffect(() => {
     const fetchRoutines = async () => {
@@ -42,7 +57,12 @@ const Main = () => {
         <Route path="routines" element={<Routines routines={routines} />} />
         <Route
           path="activities"
-          element={<Activities activities={activities} />}
+          element={
+            <Activities
+              activities={activities}
+              activityRoutines={activityRoutines}
+            />
+          }
         />
         <Route path="users/login" element={<LogIn />} />
         <Route path="users/register" element={<Register />} />
