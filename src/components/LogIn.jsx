@@ -8,7 +8,7 @@ const LogIn = () => {
   });
   
   const handleChange = (event) => {
-      console.log(event.target.name, event.target.value)
+      //console.log(event.target.name, event.target.value)
       setLogInInfo({ ...logInInfo, [event.target.name]: event.target.value });
     };
     
