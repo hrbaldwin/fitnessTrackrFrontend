@@ -28,7 +28,7 @@ const Main = () => {
   const [activities, setActivities] = useState([]);
   const [activityRoutines, setActivityRoutines] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [error, setError] = useState(null)
   // useEffect(() => {
   //   const fetchRoutinesForActivities = async () => {
   //     const returnedActivityRoutines = await fetchingRoutinesForActivities(
@@ -88,7 +88,7 @@ const Main = () => {
             />
           }
         />
-        <Route path="users/login" element={<LogIn />} />
+        <Route path="users/login" element={<LogIn error={error} setError={setError} />} />
         <Route path="users/register" element={<Register />} />
         <Route path="createactivity" element={<CreateActivity />} />
         <Route path="createroutine" element={<CreateRoutine />} />

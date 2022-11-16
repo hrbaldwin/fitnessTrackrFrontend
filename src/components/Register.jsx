@@ -25,6 +25,8 @@ const Register = () => {
     const token = registeredUser.token;
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
+    localStorage.removeItem("username");
+    localStorage.setItem("username", username);
     setRegisterInfo({ username: "", password: "" });
   };
 

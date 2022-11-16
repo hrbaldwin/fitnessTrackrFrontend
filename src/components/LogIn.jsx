@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { logInUser } from "../api";
 import { Link } from "react-router-dom";
 
-const LogIn = () => {
+const LogIn = (props) => {
   const [logInInfo, setLogInInfo] = useState({
     username: "",
     password: "",
   });
+  const { error, setError } = props
 
   const handleChange = (event) => {
     //console.log(event.target.name, event.target.value)
@@ -27,6 +28,15 @@ const LogIn = () => {
     localStorage.setItem("username", username);
     setLogInInfo({ username: "", password: "" });
   };
+
+  const handleClick = () =>{
+    try{
+        
+
+    }catch(error){
+        setError(error)
+    }
+  }
 
   return (
     <>
