@@ -1,6 +1,6 @@
 import React from "react";
 
-const ActivityRoutines = () => {
+const ActivityRoutines = (props) => {
   return (
     <>
       <h2>routines for activities</h2>

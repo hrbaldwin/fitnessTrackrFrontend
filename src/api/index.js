@@ -104,3 +104,23 @@ export async function fetchingRoutinesForActivities(activityId) {
 }
 // ^^clicking on function and displaying
 // all routines for an activity when selected
+
+export async function DeleteRoutine(routineId, token) {
+  try {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(
+      `${BASE_URL}/api/routines/${routineId}`,
+      options
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
