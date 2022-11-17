@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { DeleteRoutine, EditRoutine } from "../api";
+import React from "react";
+import { DeleteRoutine } from "../api";
+import { Link } from "react-router-dom"
 
 const MyRoutines = (props) => {
   const myRoutines = props.myRoutines;
@@ -13,18 +14,7 @@ const MyRoutines = (props) => {
     console.log(e);
     const deleted = await DeleteRoutine(toDelete, token);
   }
-  async function handleChange2(e) {
-    e.preventDefault();
-    const toEdit = e.target.id;
-    const token = localStorage.getItem("token");
-    const edited = await EditRoutine(toEdit, token);
-    return edited;
-  }
-  let [updateRoutine, setUpdateRoutine] = useState({
-    name: "",
-    goal: "",
-    isPublic: null,
-  });
+  
 
   return (
     <>
@@ -39,17 +29,18 @@ const MyRoutines = (props) => {
                   <p>{routine.goal}</p>
                   <div className="myRoutineButtons">
                     <div className="editIconDiv">
+                    <Link to={`/editmyroutine/${routine.id}`}>
                       <button
                         className="editIcon"
-                        onClick={handleChange2}
                         id={routine.id ? `${routine.id}` : null}
-                      >
+                        >
                         <img
                           id={`${routine.id}`}
                           className="edit"
                           src="../edit.png"
-                        ></img>
+                          ></img>
                       </button>
+                          </Link>
                     </div>
                     <div className="trashBinButtonDiv">
                       <button

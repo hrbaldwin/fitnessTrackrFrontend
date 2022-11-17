@@ -7,7 +7,7 @@ const CreateRoutine = () => {
     description: "",
   });
 
-  const handleChange = (event) => {
+ const handleChange = (event) => {
     setNewRoutine({
       ...newRoutine,
       [event.target.name]: event.target.value,

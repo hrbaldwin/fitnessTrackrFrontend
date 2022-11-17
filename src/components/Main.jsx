@@ -14,6 +14,7 @@ import {
   CreateActivity,
   CreateRoutine,
   MyRoutines,
+  EditMyRoutine,
 } from "./";
 import {
   fetchingActivities,
@@ -92,6 +93,7 @@ const Main = () => {
         <Route path="users/register" element={<Register />} />
         <Route path="createactivity" element={<CreateActivity />} />
         <Route path="createroutine" element={<CreateRoutine />} />
+        <Route path="editmyroutine/:routineId" element={<EditMyRoutine/>}/>
         <Route
           path="myroutines"
           element={<MyRoutines routines={routines} myRoutines={myRoutines} />}
