@@ -79,7 +79,7 @@ const Main = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar isLoggedIn={isLoggedIn} />}>
-        <Route path="routines" element={<Routines routines={routines} />} />
+        <Route path="routines" element={<Routines routines={routines} activities={activities} />} />
         <Route
           path="activities"
           element={

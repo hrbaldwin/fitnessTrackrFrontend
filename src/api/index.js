@@ -168,3 +168,24 @@ export async function fetchingMyRoutines(username, token) {
     throw error;
   }
 }
+
+export async function AttachActivityToRoutine(activityId, count, duration) {
+  let options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      activityId,
+      count,
+      duration,
+    }),
+  };
+  let response = await fetch(
+    `${BASE_URL}/api/routines/${routineId}/activities`,
+    options
+  );
+  let result = await response.json();
+  console.log(result);
+  return result;
+}

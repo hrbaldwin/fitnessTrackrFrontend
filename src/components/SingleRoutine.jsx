@@ -2,11 +2,19 @@ import React, { useState } from "react";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
-  let [toggleActivities, setToggleActivities] = useState(true);
+  const activities = props.activities;
+  let [toggleActivities, setToggleActivities] = useState(false);
+  let[addActivity, setAddActivity] = useState(false)
+  console.log(activities)
 
-  const handleChange = () => {
+  const handleChange = (event) => {
+    event.preventDefault()
     return setToggleActivities(!toggleActivities);
   };
+  const handleChange2 = (event) => {
+    event.preventDefault()
+    return setAddActivity(!addActivity)
+  }
 
   return (
     <>
@@ -17,7 +25,8 @@ const SingleRoutine = (props) => {
       </div>
       <div>
         <button onClick={handleChange}>see activities for this routine</button>
-        <div className="routineActivitiesDiv">
+        <button onChange={handleChange2}>add activity to routine</button>
+    {toggleActivities ? <div className="routineActivitiesDiv">
           {routine && routine.activities.length
             ? routine.activities.map((activity, i) => {
                 return (
@@ -42,7 +51,16 @@ const SingleRoutine = (props) => {
                 );
               })
             : null}
-        </div>
+        </div> :null}
+        {addActivity ? <div>
+      <form>
+          <label htmlFor="activity">choose activity:</label>
+        {activities.length ? ( activities.map ((activity) => {
+          return (<option key={`activity-add-${activity.id}`}>{activity.name}</option>)
+        })) :null}
+        </form>
+        </div> :null}
+        
       </div>
     </>
   );
