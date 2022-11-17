@@ -1,6 +1,6 @@
 import React from "react";
 import { DeleteRoutine } from "../api";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const MyRoutines = (props) => {
   const myRoutines = props.myRoutines;
@@ -14,7 +14,6 @@ const MyRoutines = (props) => {
     console.log(e);
     const deleted = await DeleteRoutine(toDelete, token);
   }
-  
 
   return (
     <>
@@ -27,20 +26,22 @@ const MyRoutines = (props) => {
                   <h3>{routine.name}</h3>
                   <p>{routine.creatorName}</p>
                   <p>{routine.goal}</p>
+                  {/* NOTHING RENDERS FOR IS PUBLIC */}
+                  <p>is public:{routine.isPublic ? "yes" : "no"}</p>
                   <div className="myRoutineButtons">
                     <div className="editIconDiv">
-                    <Link to={`/editmyroutine/${routine.id}`}>
-                      <button
-                        className="editIcon"
-                        id={routine.id ? `${routine.id}` : null}
+                      <Link to={`/editmyroutine/${routine.id}`}>
+                        <button
+                          className="editIcon"
+                          id={routine.id ? `${routine.id}` : null}
                         >
-                        <img
-                          id={`${routine.id}`}
-                          className="edit"
-                          src="../edit.png"
+                          <img
+                            id={`${routine.id}`}
+                            className="edit"
+                            src="../edit.png"
                           ></img>
-                      </button>
-                          </Link>
+                        </button>
+                      </Link>
                     </div>
                     <div className="trashBinButtonDiv">
                       <button

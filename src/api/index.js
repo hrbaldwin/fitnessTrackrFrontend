@@ -135,6 +135,7 @@ export async function EditRoutine(routineId, name, goal, isPublic, token) {
       body: JSON.stringify({
         name,
         goal,
+        isPublic,
       }),
     };
     const response = await fetch(
