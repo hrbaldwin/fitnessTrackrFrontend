@@ -1,20 +1,49 @@
 import React, { useState } from "react";
+import { AttachActivityToRoutine } from "../api";
+import { useParams } from "react-router-dom";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
   const activities = props.activities;
   let [toggleActivities, setToggleActivities] = useState(false);
-  let[addActivity, setAddActivity] = useState(false)
-  console.log(activities)
+  let [addActivity, setAddActivity] = useState(false);
+  let [submittedAdd, setSubmittedAdd] = useState({
+    activityId: "",
+    count: "",
+    duration: "",
+  });
+  const { routineId } = useParams();
 
   const handleChange = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     return setToggleActivities(!toggleActivities);
   };
   const handleChange2 = (event) => {
-    event.preventDefault()
-    return setAddActivity(!addActivity)
-  }
+    event.preventDefault();
+    return setAddActivity(!addActivity);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { activityId, count, duration } = submittedAdd;
+    console.log(activityId);
+    const newlyAdded = await AttachActivityToRoutine(
+      routineId,
+      activityId,
+      count,
+      duration
+    );
+    console.log(newlyAdded);
+    setSubmittedAdd({ activityId: "", count: "", duration: "" });
+  };
+  const handleOptionChange = (event) => {
+    console.log(event.target.value);
+    let filteredActivities = activities.filter((activity) => {
+      return activity.name == event.target.value;
+    });
+    console.log(filteredActivities);
+    console.log(routine.activities);
+  };
 
   return (
     <>
@@ -25,42 +54,60 @@ const SingleRoutine = (props) => {
       </div>
       <div>
         <button onClick={handleChange}>see activities for this routine</button>
-        <button onChange={handleChange2}>add activity to routine</button>
-    {toggleActivities ? <div className="routineActivitiesDiv">
-          {routine && routine.activities.length
-            ? routine.activities.map((activity, i) => {
-                return (
-                  <div
-                    className="routineActivities"
-                    key={`activity-routine${i}`}
-                  >
-                    <h4
-                      key={`activity-name${i}`}
-                      className="activityRoutineHeader"
+        <button onClick={handleChange2}>add activity to routine</button>
+        {toggleActivities ? (
+          <div className="routineActivitiesDiv">
+            {routine && routine.activities.length
+              ? routine.activities.map((activity, i) => {
+                  return (
+                    <div
+                      className="routineActivities"
+                      key={`activity-routine${i}`}
                     >
-                      {activity.name}
-                    </h4>
-                    <p key={`activity-description${i}`}>
-                      {activity.description}
-                    </p>
-                    <p key={`activity-duration${i}`}>
-                      duration: {activity.duration}
-                    </p>
-                    <p key={`activity-count${i}`}>count: {activity.count}</p>
-                  </div>
-                );
-              })
-            : null}
-        </div> :null}
-        {addActivity ? <div>
-      <form>
-          <label htmlFor="activity">choose activity:</label>
-        {activities.length ? ( activities.map ((activity) => {
-          return (<option key={`activity-add-${activity.id}`}>{activity.name}</option>)
-        })) :null}
-        </form>
-        </div> :null}
-        
+                      <h4
+                        key={`activity-name${i}`}
+                        className="activityRoutineHeader"
+                      >
+                        {activity.name}
+                      </h4>
+                      <p key={`activity-description${i}`}>
+                        {activity.description}
+                      </p>
+                      <p key={`activity-duration${i}`}>
+                        duration: {activity.duration}
+                      </p>
+                      <p key={`activity-count${i}`}>count: {activity.count}</p>
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        ) : null}
+        {addActivity ? (
+          <div>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="activity">choose activity:</label>
+              <select onChange={handleOptionChange}>
+                {activities.length
+                  ? activities.map((activity) => {
+                      return (
+                        <option
+                          key={`activity-add-${activity.id}`}
+                          id={activity.id}
+                        >
+                          {activity.name}
+                        </option>
+                      );
+                    })
+                  : null}{" "}
+              </select>
+              {/* Left off HERE, create inputs for count and duration */}
+              <input></input>
+              <input></input>
+              <button type="submit">add to routine</button>
+            </form>
+          </div>
+        ) : null}
       </div>
     </>
   );

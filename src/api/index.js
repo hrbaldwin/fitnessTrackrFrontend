@@ -169,7 +169,12 @@ export async function fetchingMyRoutines(username, token) {
   }
 }
 
-export async function AttachActivityToRoutine(activityId, count, duration) {
+export async function AttachActivityToRoutine(
+  routineId,
+  activityId,
+  count,
+  duration
+) {
   let options = {
     method: "POST",
     headers: {
