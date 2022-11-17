@@ -1,36 +1,12 @@
 import React, { useState } from "react";
-import { DeleteRoutine, EditRoutine } from "../api";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
-  let [updateRoutine, setUpdateRoutine] = useState({
-    name: "",
-    goal: "",
-    isPublic: null,
-  });
   let [toggleActivities, setToggleActivities] = useState(true);
 
-  //   console.log(routine);
-  //   console.log(routine.count);
-  async function handleDelete(e) {
-    e.preventDefault();
-    console.log(e, "D");
-    const toDelete = e.target.id;
-
-    const token = localStorage.getItem("token");
-    console.log(e);
-    const deleted = await DeleteRoutine(toDelete, token);
-  }
   const handleChange = () => {
     return setToggleActivities(!toggleActivities);
   };
-  async function handleChange2(e) {
-    e.preventDefault();
-    const toEdit = e.target.id;
-    const token = localStorage.getItem("token");
-    const edited = await EditRoutine(toEdit, token);
-    return edited;
-  }
 
   return (
     <>
@@ -67,17 +43,6 @@ const SingleRoutine = (props) => {
               })
             : null}
         </div>
-      </div>
-      <div>
-        <button onClick={handleDelete} id={routine.id ? `${routine.id}` : null}>
-          Delete Routine
-        </button>
-        <button
-          onClick={handleChange2}
-          id={routine.id ? `${routine.id}` : null}
-        >
-          Edit Routine
-        </button>
       </div>
     </>
   );

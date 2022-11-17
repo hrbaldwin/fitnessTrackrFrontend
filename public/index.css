@@ -128,3 +128,98 @@ body {
   align-self: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+.newRoutineHeader{
+  font-size: 1.7em;
+  margin-left: 1.2em;
+  letter-spacing: 0.3em;
+  color: rgb(59, 169, 161);
+  text-align: center;
+}
+.newRoutineForm{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.newRoutineFormDiv{
+  display: flex;
+  justify-content: center;
+}
+.newRoutineSubmitButton{
+  background-color: rgb(59, 169, 161);
+  border: 2px solid rgba(78,224,214,1);
+  font-size: 17px;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  align-self: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.newActivityHeader{
+  font-size: 1.7em;
+  margin-left: 1.2em;
+  letter-spacing: 0.3em;
+  color: rgb(115, 177, 6);
+  text-align: center;
+}
+.newActivityForm{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.newActivityFormDiv{
+  display: flex;
+  justify-content: center;
+}
+.newActivitySubmitButton{
+  background-color: rgb(115, 177, 6);
+  border: 2px solid rgb(154,237,11);
+  font-size: 17px;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  align-self: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.trash{
+  max-height: 29px;
+  display: flex;
+  border-radius: 10px;
+}
+
+.trashBin {
+  background-color: rgba(78,224,214,0.005);
+  border: none;
+  display: flex;
+  max-width: 50px;
+}
+.trashBinButtonDiv{
+  display: flex;
+}
+.edit{
+  max-height: 30px;
+  display: flex;
+  border-radius: 10px;
+}
+
+.editIcon {
+  background-color: rgba(78,224,214,0.05);
+  opacity: 70%;
+  border: none;
+  display: flex;
+  max-width: 50px;
+}
+.editIconDiv{
+  display: flex;
+}
+.myRoutineButtons{
+  display: flex;
+  justify-content: right;
+}
+.trash:hover{
+  border-radius: 5px;
+  box-shadow: 0 2px 20px -2px rgb(60, 172, 164);
+}
+.editIcon:hover{
+  border-radius: 5px;
+  box-shadow: 0 2px 20px -2px rgb(60, 172, 164);
+}

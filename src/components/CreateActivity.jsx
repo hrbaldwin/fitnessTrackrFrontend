@@ -26,19 +26,32 @@ const CreateActivity = () => {
   };
   return (
     <>
-      <h2>create new activity</h2>
-      <form onSubmit={handleSubmit}>
-        <label>name:</label>
-        <input type="text" name="name" onChange={handleChange} required />
-        <label>description:</label>
-        <input
-          type="text"
-          name="description"
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">submit</button>
-      </form>
+      <h2 className="newActivityHeader">create new activity</h2>
+      <div className="newActivityFormDiv">
+        <form onSubmit={handleSubmit} className="newActivityForm">
+          <label>name:</label>
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            required
+          />{" "}
+          <br></br>
+          <label>description:</label>
+          <textarea
+            rows="5"
+            cols="50"
+            type="text"
+            name="description"
+            onChange={handleChange}
+            required
+          />{" "}
+          <br></br>
+          <button type="submit" className="newActivitySubmitButton">
+            submit
+          </button>
+        </form>
+      </div>
     </>
   );
 };
