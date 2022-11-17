@@ -3,8 +3,7 @@ import { SingleRoutine } from "./";
 
 const Routines = (props) => {
   const routines = props.routines;
-  const activities=props.activities
-  // console.log(routines, "routines");
+
   return (
     <>
       <div className="routinesColumn">
@@ -14,7 +13,6 @@ const Routines = (props) => {
             return (
               <SingleRoutine
                 routine={routine}
-                activities={activities}
                 key={`routine-id-${routine.id}`}
               />
             );

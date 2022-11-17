@@ -15,6 +15,7 @@ import {
   CreateRoutine,
   MyRoutines,
   EditMyRoutine,
+  RoutineActivities,
 } from "./";
 import {
   fetchingActivities,
@@ -29,7 +30,7 @@ const Main = () => {
   const [activities, setActivities] = useState([]);
   const [activityRoutines, setActivityRoutines] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
   // useEffect(() => {
   //   const fetchRoutinesForActivities = async () => {
   //     const returnedActivityRoutines = await fetchingRoutinesForActivities(
@@ -79,7 +80,7 @@ const Main = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar isLoggedIn={isLoggedIn} />}>
-        <Route path="routines" element={<Routines routines={routines} activities={activities} />} />
+        <Route path="routines" element={<Routines routines={routines} />} />
         <Route
           path="activities"
           element={
@@ -89,14 +90,23 @@ const Main = () => {
             />
           }
         />
-        <Route path="users/login" element={<LogIn error={error} setError={setError} />} />
+        <Route
+          path="users/login"
+          element={<LogIn error={error} setError={setError} />}
+        />
         <Route path="users/register" element={<Register />} />
         <Route path="createactivity" element={<CreateActivity />} />
         <Route path="createroutine" element={<CreateRoutine />} />
-        <Route path="editmyroutine/:routineId" element={<EditMyRoutine/>}/>
+        <Route path="editmyroutine/:routineId" element={<EditMyRoutine />} />
         <Route
           path="myroutines"
           element={<MyRoutines routines={routines} myRoutines={myRoutines} />}
+        />
+        <Route
+          path="addactivities/:routineId"
+          element={
+            <RoutineActivities routines={routines} activities={activities} />
+          }
         />
       </Route>
     )

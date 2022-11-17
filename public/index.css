@@ -223,3 +223,29 @@ body {
   border-radius: 5px;
   box-shadow: 0 2px 20px -2px rgb(60, 172, 164);
 }
+.routineActivityForm{
+  display: flex;
+flex-direction: column;
+width: 30%;
+margin-top: 1.5em;
+text-align: center;
+}
+.routineActivityFormDiv{
+  display: flex;
+  justify-content: center;
+}
+.addToButton{
+  background-color: rgb(181, 58, 212);
+  border: 2px solid rgb(217, 158, 231);
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  align-self: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.activityDrop{
+  width: 25em;
+  align-self: center;
+  margin-top: 1em;
+}

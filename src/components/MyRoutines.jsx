@@ -26,7 +26,6 @@ const MyRoutines = (props) => {
                   <h3>{routine.name}</h3>
                   <p>{routine.creatorName}</p>
                   <p>{routine.goal}</p>
-                  {/* NOTHING RENDERS FOR IS PUBLIC */}
                   <p>is public:{routine.isPublic ? "yes" : "no"}</p>
                   <div className="myRoutineButtons">
                     <div className="editIconDiv">

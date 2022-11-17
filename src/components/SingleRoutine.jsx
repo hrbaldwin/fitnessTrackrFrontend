@@ -1,54 +1,15 @@
 import React, { useState } from "react";
-import { AttachActivityToRoutine } from "../api";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
-  const activities = props.activities;
   let [toggleActivities, setToggleActivities] = useState(false);
-  let [addActivity, setAddActivity] = useState(false);
-  let [submittedAdd, setSubmittedAdd] = useState({
-    activityId: "",
-    count: "",
-    duration: "",
-  });
-  const { routineId } = useParams();
 
   const handleChange = (event) => {
     event.preventDefault();
     return setToggleActivities(!toggleActivities);
   };
-  const handleChange2 = (event) => {
-    event.preventDefault();
-    return setAddActivity(!addActivity);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    const { activityId, count, duration } = submittedAdd;
-    console.log(activityId);
-    const newlyAdded = await AttachActivityToRoutine(
-      routine.id,
-      activityId,
-      count,
-      duration
-    );
-    console.log(newlyAdded);
-    setSubmittedAdd({ activityId: "", count: "", duration: "" });
-  };
-  const handleOptionChange = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.name)
-    //console.log(event.target)
-    // let filteredActivities = activities.filter((activity) => {
-    //   return activity.name == event.target.value;
-  //   });
-  //   console.log(filteredActivities);
-  //console.log(routine.activities);
-setSubmittedAdd({...submittedAdd,[event.target.name]:event.target.value})  
-};
-  
-console.log(submittedAdd)
   return (
     <>
       <div className="singleRoutine">
@@ -58,7 +19,11 @@ console.log(submittedAdd)
       </div>
       <div>
         <button onClick={handleChange}>see activities for this routine</button>
-        <button onClick={handleChange2}>add activity to routine</button>
+        <Link to={`/addactivities/${routine.id}`}>
+          <button id={routine.id ? `${routine.id}` : null}>
+            add activity to routine
+          </button>
+        </Link>
         {toggleActivities ? (
           <div className="routineActivitiesDiv">
             {routine && routine.activities.length
@@ -85,31 +50,6 @@ console.log(submittedAdd)
                   );
                 })
               : null}
-          </div>
-        ) : null}
-        {addActivity ? (
-          <div>
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="activity">choose activity:</label>
-              <select  name='activityId' onChange={handleOptionChange}>
-                {activities.length
-                  ? activities.map((activity) => {
-                      return (
-                        <option
-                          key={`activity-add-${activity.id}`}
-                          value={activity.id}
-                         
-                        >
-                          {activity.name}
-                        </option>
-                      );
-                    })
-                  : null}{" "}
-              </select>
-             <label>count:</label> <input type="number" name="count" onChange={handleOptionChange} required />
-              <label>duration:</label><input type="number" name="duration" onChange={handleOptionChange} required/>
-              <button type="submit">add to routine</button>
-            </form>
           </div>
         ) : null}
       </div>
