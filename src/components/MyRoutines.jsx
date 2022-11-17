@@ -5,7 +5,7 @@ const MyRoutines = (props) => {
 
   return (
     <>
-      <h2>my routines:</h2>
+      <h2 className="routineHeader">My Routines:</h2>
       <div className="routinesColumn">
         {myRoutines && myRoutines.length
           ? myRoutines.map((routine, i) => {

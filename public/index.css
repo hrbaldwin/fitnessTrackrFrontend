@@ -1,29 +1,130 @@
 body {
-  font-family: 'Raleway', Arial, sans-serif;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: normal;
   height: 100vh;
   width: 100vw;
   margin: 0;
+  background-color: rgb(239, 238, 238);
 }
 
 #navbar {
-  font-family: 'Poller One', Arial, sans-serif;
+  font-family: 'Source Code Pro', monospace;
+  font-style: italic;
+  font-size: 2em;
   flex-grow: 1;
   max-height: 10%;
   min-height: 40px;
-  background-color: #222222;
+  background-color: rgb(90, 88, 88);
   color: white;
   display: flex;
   align-items: center;
 }
 .routineActivities{
-  border: 2px solid black;
+  border: 5px solid rgb(154,237,11);
+  border-radius: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin: 0.3em;
+  background-color: rgba(154,237,11, 0.3);
 }
-.singleRoutine {
-  background-color: rgba(123, 167, 172, 0.6);
+.singleActivity{
+  background-color: rgba(154,237,11, 0.3);
+  margin: 1.5em 3em 1em 3em;
+  padding: 15px;
+  border: 5px solid rgb(154,237,11);
+  border-radius: 10px;
 }
-
-.routinesColumn{
-  margin: 2em;
+.activityHeader{
+  margin-left: 1.2em;
+  font-size: 1.7em;
+  letter-spacing: 0.3em;
+}
+.routineHeader{
+  margin-left: 1.2em;
+  font-size: 1.7em;
+  letter-spacing: 0.3em;
+}
+.singleRoutine{
+  background-color: rgba(78,224,214,0.3);
+  margin: 1.5em 3em 1em 3em;
+  padding: 15px;
+  border: 5px solid rgba(78,224,214,255);
+  border-radius: 10px;
+}
+.routineActivitiesDiv{
+  display: flex;
+  flex-wrap: wrap;
+}
+.activityRoutineHeader{
+  text-decoration: underline;
+}
+.target{
+  font-size: 3em;
+  margin: 0 0 0.25em 0.17em;
+}
+.logInOrUpForm{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.logInHeader{
+  font-size: 1.7em;
+  margin-left: 1.2em;
+  letter-spacing: 0.3em;
+  color: rgba(243,51,102,255);
+  text-align: center;
+}
+.logInOrUpFormDiv{
+  display: flex;
+  justify-content: center;
+}
+.registerButton{
+  background-color: rgba(243,51,102,0.4);
+  border: 2px solid rgba(243,51,102,0.9);
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  font-size: 14px;
+}
+.registerButtonDiv{
+  display: flex;
+  justify-content: center;
+  margin: 1.5em;
+}
+.submitButton{
+  background-color: rgba(243,51,102,0.8);
+  font-size: 17px;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  align-self: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.registerForm{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.registerFormDiv{
+  display: flex;
+  justify-content: center;
+}
+.registerHeader{
+  font-size: 1.7em;
+  margin-left: 1.2em;
+  letter-spacing: 0.3em;
+  color: rgb(65, 182, 188);
+  text-align: center;
+}
+.registerSubmit{
+  background-color: rgb(65, 182, 188);
+  font-size: 17px;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  align-self: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }

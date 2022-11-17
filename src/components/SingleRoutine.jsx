@@ -41,18 +41,32 @@ const SingleRoutine = (props) => {
       </div>
       <div>
         <button onClick={handleChange}>see activities for this routine</button>
-        {routine && routine.activities.length
-          ? routine.activities.map((activity, i) => {
-              return (
-                <div className="routineActivities" key={`activity-routine${i}`}>
-                  <p key={`activity-name${i}`}>{activity.name}</p>
-                  <p key={`activity-description${i}`}>{activity.description}</p>
-                  <p key={`activity-duration${i}`}>{activity.duration}</p>
-                  <p key={`activity-count${i}`}>{activity.count}</p>
-                </div>
-              );
-            })
-          : null}
+        <div className="routineActivitiesDiv">
+          {routine && routine.activities.length
+            ? routine.activities.map((activity, i) => {
+                return (
+                  <div
+                    className="routineActivities"
+                    key={`activity-routine${i}`}
+                  >
+                    <h4
+                      key={`activity-name${i}`}
+                      className="activityRoutineHeader"
+                    >
+                      {activity.name}
+                    </h4>
+                    <p key={`activity-description${i}`}>
+                      {activity.description}
+                    </p>
+                    <p key={`activity-duration${i}`}>
+                      duration: {activity.duration}
+                    </p>
+                    <p key={`activity-count${i}`}>count: {activity.count}</p>
+                  </div>
+                );
+              })
+            : null}
+        </div>
       </div>
       <div>
         <button onClick={handleDelete} id={routine.id ? `${routine.id}` : null}>

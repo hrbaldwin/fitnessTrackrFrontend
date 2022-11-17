@@ -32,19 +32,25 @@ const Register = () => {
 
   return (
     <>
-      <h3>Register below</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">username:</label>
-        <input type="text" name="username" onChange={handleChange} required />
-        <label htmlFor="password">password:</label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">submit</button>
-      </form>
+      <h3 className="registerHeader">Register below</h3>
+      <div className="registerFormDiv">
+        <form onSubmit={handleSubmit} className="registerForm">
+          <label htmlFor="username">username:</label>
+          <input type="text" name="username" onChange={handleChange} required />
+          <br></br>
+          <label htmlFor="password">password:</label>
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            required
+          />{" "}
+          <br></br>
+          <button type="submit" className="registerSubmit">
+            submit
+          </button>
+        </form>
+      </div>
     </>
   );
 };

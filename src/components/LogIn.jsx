@@ -7,7 +7,7 @@ const LogIn = (props) => {
     username: "",
     password: "",
   });
-  const { error, setError } = props
+  const { error, setError } = props;
 
   const handleChange = (event) => {
     //console.log(event.target.name, event.target.value)
@@ -29,34 +29,47 @@ const LogIn = (props) => {
     setLogInInfo({ username: "", password: "" });
   };
 
-  const handleClick = () =>{
-    try{
-        
-
-    }catch(error){
-        setError(error)
+  const handleClick = () => {
+    try {
+    } catch (error) {
+      setError(error);
     }
-  }
+  };
 
   return (
     <>
-      <h3>Login below</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">username:</label>
-        <input type="text" name="username" onChange={handleChange} required />
-        <label htmlFor="password">password:</label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">submit</button>
-      </form>
-      <Link to="/users/register">
-        {" "}
-        <button>not registered? create account here.</button>{" "}
-      </Link>
+      <h3 className="logInHeader">Login below</h3>
+      <div className="logInOrUpFormDiv">
+        <form onSubmit={handleSubmit} className="logInOrUpForm">
+          <label htmlFor="username">username:</label>
+          <input
+            type="text"
+            name="username"
+            onChange={handleChange}
+            required
+          />{" "}
+          <br></br>
+          <label htmlFor="password">password:</label>
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            required
+          />{" "}
+          <br></br>
+          <button type="submit" className="submitButton">
+            submit
+          </button>
+        </form>{" "}
+      </div>
+      <div className="registerButtonDiv">
+        <Link to="/users/register">
+          {" "}
+          <button className="registerButton">
+            not registered? create account here.
+          </button>{" "}
+        </Link>
+      </div>
     </>
   );
 };

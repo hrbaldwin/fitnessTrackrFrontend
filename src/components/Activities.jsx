@@ -8,7 +8,7 @@ const Activities = (props) => {
   // console.log(activityRoutines);
   return (
     <>
-      <h2>Activities</h2>
+      <h2 className="activityHeader">Activities:</h2>
       {activities.length ? (
         activities.map((activity) => {
           return (

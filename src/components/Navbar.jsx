@@ -3,15 +3,15 @@ import { Outlet, Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const isLoggedIn = props.isLoggedIn;
-  const handleChange=(event) =>{
+  const handleChange = (event) => {
     event.preventDefault();
-    localStorage.removeItem("token")
-    
-  }
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+  };
   return (
     <>
       <div id="navbar">
-        <h2>fitnessTrackr</h2>
+        <h2>fitnessTrackr</h2> <span className="target">🎯</span>
       </div>
       <div>
         <Link to={"/activities"}>
@@ -39,9 +39,7 @@ const Navbar = (props) => {
           </>
         ) : null}
         {isLoggedIn ? (
-         
-            <button onClick={handleChange}>log out</button>
-         
+          <button onClick={handleChange}>log out</button>
         ) : (
           <Link to={"/users/login"}>
             {" "}

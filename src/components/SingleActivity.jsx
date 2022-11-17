@@ -8,8 +8,10 @@ const SingleActivity = (props) => {
 
   return (
     <>
-      <h3>{activity.name}</h3>
-      <p>{activity.description}</p>
+      <div className="singleActivity">
+        <h3>{activity.name}</h3>
+        <p>{activity.description}</p>
+      </div>
     </>
   );
 };
