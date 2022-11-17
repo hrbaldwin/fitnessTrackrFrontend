@@ -28,7 +28,7 @@ const SingleRoutine = (props) => {
     const { activityId, count, duration } = submittedAdd;
     console.log(activityId);
     const newlyAdded = await AttachActivityToRoutine(
-      routineId,
+      routine.id,
       activityId,
       count,
       duration
@@ -38,13 +38,17 @@ const SingleRoutine = (props) => {
   };
   const handleOptionChange = (event) => {
     console.log(event.target.value);
-    let filteredActivities = activities.filter((activity) => {
-      return activity.name == event.target.value;
-    });
-    console.log(filteredActivities);
-    console.log(routine.activities);
-  };
-
+    console.log(event.target.name)
+    //console.log(event.target)
+    // let filteredActivities = activities.filter((activity) => {
+    //   return activity.name == event.target.value;
+  //   });
+  //   console.log(filteredActivities);
+  //console.log(routine.activities);
+setSubmittedAdd({...submittedAdd,[event.target.name]:event.target.value})  
+};
+  
+console.log(submittedAdd)
   return (
     <>
       <div className="singleRoutine">
@@ -87,13 +91,14 @@ const SingleRoutine = (props) => {
           <div>
             <form onSubmit={handleSubmit}>
               <label htmlFor="activity">choose activity:</label>
-              <select onChange={handleOptionChange}>
+              <select  name='activityId' onChange={handleOptionChange}>
                 {activities.length
                   ? activities.map((activity) => {
                       return (
                         <option
                           key={`activity-add-${activity.id}`}
-                          id={activity.id}
+                          value={activity.id}
+                         
                         >
                           {activity.name}
                         </option>
@@ -101,9 +106,8 @@ const SingleRoutine = (props) => {
                     })
                   : null}{" "}
               </select>
-              {/* Left off HERE, create inputs for count and duration */}
-              <input></input>
-              <input></input>
+             <label>count:</label> <input type="number" name="count" onChange={handleOptionChange} required />
+              <label>duration:</label><input type="number" name="duration" onChange={handleOptionChange} required/>
               <button type="submit">add to routine</button>
             </form>
           </div>

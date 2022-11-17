@@ -181,9 +181,9 @@ export async function AttachActivityToRoutine(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      activityId,
-      count,
-      duration,
+      activityId: Number(activityId),
+      count: Number(count),
+      duration: Number(duration),
     }),
   };
   let response = await fetch(
@@ -193,4 +193,53 @@ export async function AttachActivityToRoutine(
   let result = await response.json();
   console.log(result);
   return result;
+}
+
+export async function EditRoutineActivity(
+  token,
+  count,
+  duration,
+  routineActivityId
+) {
+  try {
+    let options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        count,
+        duration,
+      }),
+    };
+    const response = await fetch(
+      `${BASE_URL}/api/routine_activities/${routineActivityId}`,
+      options
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function DeleteRoutineActivity(token, routineActivityId) {
+  try {
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(
+      `${BASE_URL}/api/routine_activities/${routineActivityId}`,
+      options
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 }
