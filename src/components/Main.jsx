@@ -16,6 +16,7 @@ import {
   MyRoutines,
   EditMyRoutine,
   RoutineActivities,
+  ActivityEdit,
 } from "./";
 import {
   fetchingActivities,
@@ -107,6 +108,10 @@ const Main = () => {
           element={
             <RoutineActivities routines={routines} activities={activities} />
           }
+        />
+        <Route
+          path="activityedit/:routineActivityId"
+          element={<ActivityEdit />}
         />
       </Route>
     )

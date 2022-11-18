@@ -195,7 +195,7 @@ export async function AttachActivityToRoutine(
   return result;
 }
 
-export async function EditRoutineActivity(
+export async function editRoutineActivity(
   token,
   count,
   duration,

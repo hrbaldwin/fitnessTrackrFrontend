@@ -249,3 +249,15 @@ text-align: center;
   align-self: center;
   margin-top: 1em;
 }
+.attachedRoutineActivities{
+  border: 5px solid rgb(154,237,11);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.3em;
+  background-color: rgba(154,237,11, 0.3);
+}
+.attachedRoutineActivitiesDiv{
+  display: flex;
+  flex-wrap: wrap;
+}

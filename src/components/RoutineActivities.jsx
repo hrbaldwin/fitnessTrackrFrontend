@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { AttachActivityToRoutine } from "../api";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const RoutineActivities = (props) => {
   const routines = props.routines;
+  const activities = props.activities;
   console.log(routines);
   let [submittedAdd, setSubmittedAdd] = useState({
     activityId: "",
@@ -11,7 +12,16 @@ const RoutineActivities = (props) => {
     duration: "",
   });
   const { routineId } = useParams();
-  const activities = props.activities;
+
+  const handleOptionChange = (event) => {
+    console.log(event.target.value);
+    console.log(event.target.name);
+    setSubmittedAdd({
+      ...submittedAdd,
+      [event.target.name]: event.target.value,
+    });
+  };
+  console.log(routineId);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -26,37 +36,21 @@ const RoutineActivities = (props) => {
     console.log(newlyAdded);
     setSubmittedAdd({ activityId: "", count: "", duration: "" });
   };
-  const handleOptionChange = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.name);
-    setSubmittedAdd({
-      ...submittedAdd,
-      [event.target.name]: event.target.value,
-    });
-  };
-  console.log(routineId) 
-  //   LEFT OFF HERE!!!!!!!!!
-  //   const routineAttached = (routineId) => {
-//   const routineSelected = routines.filter((routine) => {
-//     return routine.routineId === routineId;
-//   });
-//   console.log(routineSelected);
-  // return routine.routineId === routineId
-  //   };
 
   const routineAttached = routines.find((routine) => {
-    console.log(typeof routine.id)
-    console.log(typeof routineId)
-     return routine.id == routineId;
-    
-    
-        
-  })
+    console.log(typeof routine.id);
+    console.log(typeof routineId);
+    return routine.id == routineId;
+  });
   console.log(routineAttached);
+
   return (
     <>
-
-   
+      <div className="singleRoutine">
+        <h2>{routineAttached.name}</h2>
+        <p>{routineAttached.creatorName}</p>
+        <p>{routineAttached.goal}</p>
+      </div>
       <div className="routineActivityFormDiv">
         <form onSubmit={handleSubmit} className="routineActivityForm">
           <label htmlFor="activity">choose activity:</label>
@@ -99,6 +93,36 @@ const RoutineActivities = (props) => {
             add to routine
           </button>
         </form>
+      </div>
+      <div className="attachedRoutineActivitiesDiv">
+        {routineAttached && routineAttached.activities.length
+          ? routineAttached.activities.map((activity, i) => {
+              return (
+                <div
+                  className="attachedRoutineActivities"
+                  key={`activity-routine${i}`}
+                >
+                  <h4
+                    key={`activity-name${i}`}
+                    className="activityRoutineHeader"
+                  >
+                    {activity.name}
+                  </h4>
+                  <p key={`activity-description${i}`}>{activity.description}</p>
+                  <p key={`activity-duration${i}`}>
+                    duration: {activity.duration}
+                  </p>
+                  <p key={`activity-count${i}`}>count: {activity.count}</p>
+
+                  <Link
+                    to={`/activityedit/${routineAttached.routineActivityId}`}
+                  >
+                    <button>edit count and duration</button>
+                  </Link>
+                </div>
+              );
+            })
+          : null}
       </div>
     </>
   );
