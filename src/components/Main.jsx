@@ -21,7 +21,6 @@ import {
 import {
   fetchingActivities,
   fetchingRoutines,
-  fetchingRoutinesForActivities,
   fetchingMyRoutines,
 } from "../api";
 
@@ -32,15 +31,7 @@ const Main = () => {
   const [activityRoutines, setActivityRoutines] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
-  // useEffect(() => {
-  //   const fetchRoutinesForActivities = async () => {
-  //     const returnedActivityRoutines = await fetchingRoutinesForActivities(
-  //       activityId
-  //     );
-  //     setActivityRoutines(returnedActivityRoutines);
-  //   };
-  //   fetchRoutinesForActivities();
-  // }, []);
+  
   useEffect(() => {
     const checkToken = () => {
       const token = localStorage.getItem("token");

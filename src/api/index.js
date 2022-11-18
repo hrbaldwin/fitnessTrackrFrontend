@@ -90,21 +90,6 @@ export async function creatingRoutine(token, name, goal) {
   return result;
 }
 
-export async function fetchingRoutinesForActivities(activityId) {
-  try {
-    const fetchingActivityRoutinesUrl = await fetch(
-      `${BASE_URL}/api/activities/${activityId}/routines`
-    );
-    const fetchedActivityRoutinesUrl = await fetchingActivityRoutinesUrl.json();
-    console.log(fetchedActivityRoutinesUrl);
-    return fetchedActivityRoutinesUrl;
-  } catch (error) {
-    throw error;
-  }
-}
-// ^^clicking on function and displaying
-// all routines for an activity when selected
-
 export async function DeleteRoutine(routineId, token) {
   try {
     const options = {

@@ -8,6 +8,7 @@ const LogIn = (props) => {
     password: "",
   });
   const { error, setError } = props;
+  //const [currentError, setCurrentError]=useState(null)
 
   const handleChange = (event) => {
     //console.log(event.target.name, event.target.value)
@@ -21,20 +22,23 @@ const LogIn = (props) => {
     console.log(logInInfo);
     const registeredUser = await logInUser(username, password);
     console.log(registeredUser);
+
+if (registeredUser.error){
+    setError(registeredUser)
+}else{
     const token = registeredUser.token;
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     localStorage.removeItem("username");
     localStorage.setItem("username", username);
     setLogInInfo({ username: "", password: "" });
+
+setError(null)
+}
+
   };
 
-  const handleClick = () => {
-    try {
-    } catch (error) {
-      setError(error);
-    }
-  };
+  
 
   return (
     <>
@@ -62,6 +66,7 @@ const LogIn = (props) => {
           </button>
         </form>{" "}
       </div>
+      {error ? <p>{error.error}</p> :null}
       <div className="registerButtonDiv">
         <Link to="/users/register">
           {" "}

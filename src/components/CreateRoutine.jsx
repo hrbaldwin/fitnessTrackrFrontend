@@ -6,6 +6,7 @@ const CreateRoutine = () => {
     name: "",
     description: "",
   });
+  const [currentError, setCurrentError]=useState(null)
 
  const handleChange = (event) => {
     setNewRoutine({

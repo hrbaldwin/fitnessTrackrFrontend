@@ -6,12 +6,13 @@ const RoutineActivities = (props) => {
   const routines = props.routines;
   const activities = props.activities;
   console.log(routines);
-  let [submittedAdd, setSubmittedAdd] = useState({
+  const [submittedAdd, setSubmittedAdd] = useState({
     activityId: "",
     count: "",
     duration: "",
   });
   const [routineAttached, setRoutineAttached]=useState({})
+  const [activityAdded, setActivityAdded] = useState(false)
   const { routineId } = useParams();
 
   const handleOptionChange = (event) => {
@@ -47,7 +48,10 @@ useEffect(()=>{
 }, [routines]) 
   
   console.log(routineAttached);
-
+const handleClick = (event) => {
+    event.preventDefault()
+setActivityAdded(true)
+}
   return (
     <>
     {routineAttached && routineAttached.name ?
@@ -95,7 +99,7 @@ useEffect(()=>{
             required
           />{" "}
           <br></br>
-          <button type="submit" className="addToButton">
+          <button type="submit" className="addToButton" onClick={handleClick}>
             add to routine
           </button>
         </form>
