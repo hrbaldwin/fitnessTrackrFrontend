@@ -34,16 +34,29 @@ const RoutineActivities = (props) => {
       [event.target.name]: event.target.value,
     });
   };
+  console.log(routineId) 
   //   LEFT OFF HERE!!!!!!!!!
   //   const routineAttached = (routineId) => {
-  const routineSelected = routines.filter((routine) => {
-    return routine.routineId === routineId;
-  });
-  console.log(routineSelected);
+//   const routineSelected = routines.filter((routine) => {
+//     return routine.routineId === routineId;
+//   });
+//   console.log(routineSelected);
   // return routine.routineId === routineId
   //   };
+
+  const routineAttached = routines.find((routine) => {
+    console.log(typeof routine.id)
+    console.log(typeof routineId)
+     return routine.id == routineId;
+    
+    
+        
+  })
+  console.log(routineAttached);
   return (
     <>
+
+   
       <div className="routineActivityFormDiv">
         <form onSubmit={handleSubmit} className="routineActivityForm">
           <label htmlFor="activity">choose activity:</label>
