@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { creatingActivity } from "../api";
 
-const CreateActivity = () => {
+const CreateActivity = (props) => {
   const [newActivity, setNewActivity] = useState({
     name: "",
     description: "",
   });
-
+  const { error, setError } = props;
   const handleChange = (event) => {
     setNewActivity({
       ...newActivity,
@@ -22,8 +22,15 @@ const CreateActivity = () => {
     const token = localStorage.getItem("token");
     const ourNewActivity = await creatingActivity(token, name, description);
     console.log(ourNewActivity);
-    setNewActivity({ name: "", description: "" });
+
+    if (ourNewActivity.error) {
+      setError(ourNewActivity);
+    } else {
+      setNewActivity({ name: "", description: "" });
+      setError(null);
+    }
   };
+
   return (
     <>
       <h2 className="newActivityHeader">create new activity</h2>
@@ -52,6 +59,7 @@ const CreateActivity = () => {
           </button>
         </form>
       </div>
+      {error ? <p>{error.error}</p> : null}
     </>
   );
 };

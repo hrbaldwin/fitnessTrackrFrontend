@@ -31,7 +31,7 @@ const Main = () => {
   const [activityRoutines, setActivityRoutines] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const checkToken = () => {
       const token = localStorage.getItem("token");
@@ -89,8 +89,14 @@ const Main = () => {
           path="users/login"
           element={<LogIn error={error} setError={setError} />}
         />
-        <Route path="users/register" element={<Register />} />
-        <Route path="createactivity" element={<CreateActivity />} />
+        <Route
+          path="users/register"
+          element={<Register error={error} setError={setError} />}
+        />
+        <Route
+          path="createactivity"
+          element={<CreateActivity error={error} setError={setError} />}
+        />
         <Route path="createroutine" element={<CreateRoutine />} />
         <Route path="editmyroutine/:routineId" element={<EditMyRoutine />} />
         <Route

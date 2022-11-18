@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { RegisterUser } from "../api";
 
-const Register = () => {
+const Register = (props) => {
   const [registerInfo, setRegisterInfo] = useState({
     username: "",
     password: "",
   });
-
+  const { error, setError } = props;
   const handleChange = (event) => {
     console.log(event.target.name, event.target.value);
     setRegisterInfo({
@@ -18,16 +18,21 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { username, password } = registerInfo;
-
     console.log(registerInfo);
     const registeredUser = await RegisterUser(username, password);
     console.log(registeredUser);
-    const token = registeredUser.token;
-    localStorage.removeItem("token");
-    localStorage.setItem("token", token);
-    localStorage.removeItem("username");
-    localStorage.setItem("username", username);
-    setRegisterInfo({ username: "", password: "" });
+    if (registeredUser.error) {
+      setError(registeredUser);
+    } else {
+      const username = registeredUser.user.username;
+      const token = registeredUser.token;
+      localStorage.removeItem("token");
+      localStorage.setItem("token", token);
+      localStorage.removeItem("username");
+      localStorage.setItem("username", username);
+      setRegisterInfo({ username: "", password: "" });
+      setError(null);
+    }
   };
 
   return (
@@ -51,6 +56,7 @@ const Register = () => {
           </button>
         </form>
       </div>
+      {error ? <p>{error.error}</p> : null}
     </>
   );
 };
