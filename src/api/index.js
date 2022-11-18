@@ -224,7 +224,7 @@ export async function editRoutineActivity(
   }
 }
 
-export async function DeleteRoutineActivity(token, routineActivityId) {
+export async function DeleteRoutineActivity(routineActivityId, token) {
   try {
     const options = {
       method: "DELETE",

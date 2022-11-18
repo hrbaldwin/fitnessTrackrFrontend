@@ -8,6 +8,7 @@ const Navbar = (props) => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
   };
+
   return (
     <>
       <div id="navbar">
@@ -24,7 +25,7 @@ const Navbar = (props) => {
         </Link>
         {isLoggedIn ? (
           <>
-            <Link to={"/myroutines"}>
+            <Link to={`/myroutines/${localStorage.getItem("username")}`}>
               {" "}
               <button>my routines</button>{" "}
             </Link>

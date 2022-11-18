@@ -80,7 +80,10 @@ const Main = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Navbar isLoggedIn={isLoggedIn} />}>
+      <Route
+        path="/"
+        element={<Navbar isLoggedIn={isLoggedIn} myRoutines={myRoutines} />}
+      >
         <Route path="routines" element={<Routines routines={routines} />} />
         <Route
           path="activities"
@@ -100,7 +103,7 @@ const Main = () => {
         <Route path="createroutine" element={<CreateRoutine />} />
         <Route path="editmyroutine/:routineId" element={<EditMyRoutine />} />
         <Route
-          path="myroutines"
+          path="myroutines/:username"
           element={<MyRoutines routines={routines} myRoutines={myRoutines} />}
         />
         <Route
@@ -111,7 +114,7 @@ const Main = () => {
         />
         <Route
           path="activityedit/:routineActivityId"
-          element={<ActivityEdit routines={routines}/>}
+          element={<ActivityEdit routines={routines} />}
         />
       </Route>
     )
