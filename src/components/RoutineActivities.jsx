@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AttachActivityToRoutine } from "../api";
 import { useParams, Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const RoutineActivities = (props) => {
     count: "",
     duration: "",
   });
+  const [routineAttached, setRoutineAttached]=useState({})
   const { routineId } = useParams();
 
   const handleOptionChange = (event) => {
@@ -36,17 +37,22 @@ const RoutineActivities = (props) => {
     console.log(newlyAdded);
     setSubmittedAdd({ activityId: "", count: "", duration: "" });
   };
-
-  const routineAttached = routines.find((routine) => {
-    console.log(typeof routine.id);
-    console.log(typeof routineId);
-    return routine.id == routineId;
-  });
+useEffect(()=>{
+    const result = routines.find((routine) => {
+        console.log(typeof routine.id);
+        console.log(typeof routineId);
+        return routine.id == routineId;
+      });
+      setRoutineAttached(result)
+}, [routines]) 
+  
   console.log(routineAttached);
 
   return (
     <>
-      <div className="singleRoutine">
+    {routineAttached && routineAttached.name ?
+    <>
+     <div className="singleRoutine">
         <h2>{routineAttached.name}</h2>
         <p>{routineAttached.creatorName}</p>
         <p>{routineAttached.goal}</p>
@@ -59,7 +65,7 @@ const RoutineActivities = (props) => {
             onChange={handleOptionChange}
             className="activityDrop"
           >
-            {activities.length
+            {activities && activities.length
               ? activities.map((activity) => {
                   return (
                     <option
@@ -95,7 +101,7 @@ const RoutineActivities = (props) => {
         </form>
       </div>
       <div className="attachedRoutineActivitiesDiv">
-        {routineAttached && routineAttached.activities.length
+        {routineAttached && routineAttached.activities && routineAttached.activities.length
           ? routineAttached.activities.map((activity, i) => {
               return (
                 <div
@@ -115,7 +121,7 @@ const RoutineActivities = (props) => {
                   <p key={`activity-count${i}`}>count: {activity.count}</p>
 
                   <Link
-                    to={`/activityedit/${routineAttached.routineActivityId}`}
+                    to={`/activityedit/${activity.routineActivityId}`}
                   >
                     <button>edit count and duration</button>
                   </Link>
@@ -124,6 +130,9 @@ const RoutineActivities = (props) => {
             })
           : null}
       </div>
+    </>
+    :<p>loading</p>}
+     
     </>
   );
 };

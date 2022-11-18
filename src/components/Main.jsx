@@ -111,7 +111,7 @@ const Main = () => {
         />
         <Route
           path="activityedit/:routineActivityId"
-          element={<ActivityEdit />}
+          element={<ActivityEdit routines={routines}/>}
         />
       </Route>
     )
