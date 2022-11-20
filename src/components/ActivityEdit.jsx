@@ -15,7 +15,7 @@ const ActivityEdit = () => {
     });
   };
   const { routineActivityId } = useParams();
-console.log(routineActivityId)
+  console.log(routineActivityId);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { count, duration } = updateActivity;
@@ -42,15 +42,30 @@ console.log(routineActivityId)
   }
   return (
     <>
-      <h2>hi</h2>
-      <form onSubmit={handleSubmit}>
-<label>count:</label>
-<input type="number" name="count" onChange={handleChange} required/>
-<label>duration:</label>
-<input type="number" name="duration" onChange={handleChange} required/>
-<button type="submit">submit</button>
-<button onClick={handleDelete} id={routineActivityId ? `${routineActivityId}`:null} >delete routine activity</button>
-      </form>
+      <h2>edit activity:</h2>
+      <div className="activityEditFormDiv">
+        <form onSubmit={handleSubmit} className="activityEditForm">
+          <label>count:</label>
+          <input type="number" name="count" onChange={handleChange} required />
+          <label>duration:</label>
+          <input
+            type="number"
+            name="duration"
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" className="activityEditSubmitButton">
+            submit
+          </button>
+          <button
+            className="activityEditDeleteButton"
+            onClick={handleDelete}
+            id={routineActivityId ? `${routineActivityId}` : null}
+          >
+            delete routine activity
+          </button>
+        </form>
+      </div>
     </>
   );
 };

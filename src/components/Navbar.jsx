@@ -15,37 +15,47 @@ const Navbar = (props) => {
         <h2>fitnessTrackr</h2> <span className="target">🎯</span>
       </div>
       <div>
-        <Link to={"/activities"}>
-          {" "}
-          <button> activities</button>{" "}
-        </Link>
-        <Link to={"/routines"}>
-          {" "}
-          <button> routines</button>{" "}
-        </Link>
         {isLoggedIn ? (
-          <>
+          <div className="loggedInNav">
+            <Link to={"/activities"}>
+              {" "}
+              <button className="inButtons"> activities</button>{" "}
+            </Link>
+            <Link to={"/routines"}>
+              {" "}
+              <button className="inButtons"> routines</button>{" "}
+            </Link>
             <Link to={`/myroutines/${localStorage.getItem("username")}`}>
               {" "}
-              <button>my routines</button>{" "}
+              <button className="inButtons">my routines</button>{" "}
             </Link>
             <Link to={"/createroutine"}>
               {" "}
-              <button>create routine</button>{" "}
+              <button className="inButtons">create routine</button>{" "}
             </Link>
             <Link to={"/createactivity"}>
               {" "}
-              <button>create activity</button>{" "}
+              <button className="inButtons">create activity</button>{" "}
             </Link>
-          </>
-        ) : null}
-        {isLoggedIn ? (
-          <button onClick={handleChange}>log out</button>
+            <button className="inButtons" onClick={handleChange}>
+              log out
+            </button>
+          </div>
         ) : (
-          <Link to={"/users/login"}>
-            {" "}
-            <button>log in</button>{" "}
-          </Link>
+          <div className="loggedOutNav">
+            <Link to={"/activities"}>
+              {" "}
+              <button className="outButtons"> activities</button>{" "}
+            </Link>
+            <Link to={"/routines"}>
+              {" "}
+              <button className="outButtons"> routines</button>{" "}
+            </Link>
+            <Link to={"/users/login"}>
+              {" "}
+              <button className="outButtons">log in</button>{" "}
+            </Link>
+          </div>
         )}
       </div>
       <Outlet />

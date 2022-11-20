@@ -73,7 +73,7 @@ export async function creatingActivity(token, name, description) {
   return result;
 }
 
-export async function creatingRoutine(token, name, goal) {
+export async function creatingRoutine(token, name, goal, isPublic) {
   const options = {
     method: "POST",
     headers: {
@@ -83,6 +83,7 @@ export async function creatingRoutine(token, name, goal) {
     body: JSON.stringify({
       name,
       goal,
+      isPublic,
     }),
   };
   const response = await fetch(`${BASE_URL}/api/routines`, options);

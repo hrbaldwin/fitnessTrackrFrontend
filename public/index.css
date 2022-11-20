@@ -261,3 +261,85 @@ text-align: center;
   display: flex;
   flex-wrap: wrap;
 }
+.loggedInNav{
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+}
+.inButtons{
+  padding: 12px;
+  background-color: rgba(39, 58, 225, 0.5);
+  border: 2px solid rgba(39, 58, 225, 1);
+  border-radius: 5px;
+  color: white;
+  font-size: 0.8em;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 700;
+}
+.loggedOutNav{
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+}
+.outButtons{
+  padding: 12px;
+  background-color: rgba(39, 58, 225, 0.5);
+  border: 2px solid rgba(39, 58, 225, 1);
+  border-radius: 5px;
+  color: white;
+  font-size: 0.8em;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 800;
+}
+.routineButtons{
+ padding: 6px;
+ width: 300px;
+ background-color: rgba(78,224,214,0.3);
+ border: 5px solid rgba(78,224,214,255);
+margin: 0 3px 0 3px;
+border-radius: 10px;
+font-family: 'Source Code Pro', monospace;
+}
+.routineButtonsDiv{
+ display: flex;
+ justify-content: center;
+}
+.countButton{
+padding: 4px;
+border: 2px solid rgb(215, 247, 191);
+  border-radius: 10px;
+  background-color: rgb(154,237,11);
+  font-size: 14px;
+  font-family: 'Source Code Pro', monospace;
+}
+.countButtonDiv{
+  display: flex;
+  justify-content: center;
+}
+.activityEditForm{
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+}
+.activityEditFormDiv{
+  display: flex;
+  justify-content: space-around;
+}
+.activityEditSubmitButton{
+  padding: 5px;
+  background-color: rgba(66, 151, 66, 0.7);
+  color:white;
+  border-radius: 10px;
+  border: 2px solid rgba(66, 151, 66, 0.3);
+}
+.activityEditDeleteButton{
+  padding: 5px;
+  background-color: rgba(247, 14, 14, 0.647);
+  color:white;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 4, 4);
+}
+.errorMessage{
+  color: red;
+  text-align: center;
+}

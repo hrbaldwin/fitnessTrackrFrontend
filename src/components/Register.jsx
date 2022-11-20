@@ -56,7 +56,7 @@ const Register = (props) => {
           </button>
         </form>
       </div>
-      {error ? <p>{error.error}</p> : null}
+      {error ? <p className="errorMessage">{error.error}</p> : null}
     </>
   );
 };

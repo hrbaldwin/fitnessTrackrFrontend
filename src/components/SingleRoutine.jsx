@@ -18,12 +18,19 @@ const SingleRoutine = (props) => {
         <p>{routine.goal}</p>
       </div>
       <div>
-        <button onClick={handleChange}>see activities for this routine</button>
-        <Link to={`/addactivities/${routine.id}`}>
-          <button id={routine.id ? `${routine.id}` : null}>
-            add activity to routine
+        <div className="routineButtonsDiv">
+          <button className="routineButtons" onClick={handleChange}>
+            see activities for this routine
           </button>
-        </Link>
+          <Link to={`/addactivities/${routine.id}`}>
+            <button
+              className="routineButtons"
+              id={routine.id ? `${routine.id}` : null}
+            >
+              add activity to routine
+            </button>
+          </Link>
+        </div>
         {toggleActivities ? (
           <div className="routineActivitiesDiv">
             {routine && routine.activities.length

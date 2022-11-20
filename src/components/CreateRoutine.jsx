@@ -5,10 +5,11 @@ const CreateRoutine = () => {
   const [newRoutine, setNewRoutine] = useState({
     name: "",
     description: "",
+    isPublic: null,
   });
-  const [currentError, setCurrentError]=useState(null)
+  const [currentError, setCurrentError] = useState(null);
 
- const handleChange = (event) => {
+  const handleChange = (event) => {
     setNewRoutine({
       ...newRoutine,
       [event.target.name]: event.target.value,
@@ -18,12 +19,12 @@ const CreateRoutine = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { name, goal } = newRoutine;
+    const { name, goal, isPublic } = newRoutine;
 
     const token = localStorage.getItem("token");
-    const ourNewRoutine = await creatingRoutine(token, name, goal);
+    const ourNewRoutine = await creatingRoutine(token, name, goal, isPublic);
     console.log(ourNewRoutine);
-    setNewRoutine({ name: "", goal: "" });
+    setNewRoutine({ name: "", goal: "", isPublic: null });
   };
 
   return (
@@ -49,6 +50,11 @@ const CreateRoutine = () => {
             required
           />
           <br></br>
+          <label htmlFor="isPublic">public?</label>
+          <select name="isPublic" onChange={handleChange}>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
+          </select>
           <button type="submit" className="newRoutineSubmitButton">
             submit
           </button>

@@ -61,7 +61,7 @@ const LogIn = (props) => {
           </button>
         </form>{" "}
       </div>
-      {error ? <p>{error.error}</p> : null}
+      {error ? <p className="errorMessage">{error.error}</p> : null}
       <div className="registerButtonDiv">
         <Link to="/users/register">
           {" "}

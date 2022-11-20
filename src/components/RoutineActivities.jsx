@@ -11,8 +11,8 @@ const RoutineActivities = (props) => {
     count: "",
     duration: "",
   });
-  const [routineAttached, setRoutineAttached]=useState({})
-  const [activityAdded, setActivityAdded] = useState(false)
+  const [routineAttached, setRoutineAttached] = useState({});
+  const [activityAdded, setActivityAdded] = useState(false);
   const { routineId } = useParams();
 
   const handleOptionChange = (event) => {
@@ -38,105 +38,117 @@ const RoutineActivities = (props) => {
     console.log(newlyAdded);
     setSubmittedAdd({ activityId: "", count: "", duration: "" });
   };
-useEffect(()=>{
+  useEffect(() => {
     const result = routines.find((routine) => {
-        console.log(typeof routine.id);
-        console.log(typeof routineId);
-        return routine.id == routineId;
-      });
-      setRoutineAttached(result)
-}, [routines]) 
-  
+      console.log(typeof routine.id);
+      console.log(typeof routineId);
+      return routine.id == routineId;
+    });
+    setRoutineAttached(result);
+  }, [routines]);
+
   console.log(routineAttached);
-const handleClick = (event) => {
-    event.preventDefault()
-setActivityAdded(true)
-}
+  const handleClick = (event) => {
+    event.preventDefault();
+    setActivityAdded(true);
+  };
   return (
     <>
-    {routineAttached && routineAttached.name ?
-    <>
-     <div className="singleRoutine">
-        <h2>{routineAttached.name}</h2>
-        <p>{routineAttached.creatorName}</p>
-        <p>{routineAttached.goal}</p>
-      </div>
-      <div className="routineActivityFormDiv">
-        <form onSubmit={handleSubmit} className="routineActivityForm">
-          <label htmlFor="activity">choose activity:</label>
-          <select
-            name="activityId"
-            onChange={handleOptionChange}
-            className="activityDrop"
-          >
-            {activities && activities.length
-              ? activities.map((activity) => {
+      {routineAttached && routineAttached.name ? (
+        <>
+          <div className="singleRoutine">
+            <h2>{routineAttached.name}</h2>
+            <p>{routineAttached.creatorName}</p>
+            <p>{routineAttached.goal}</p>
+          </div>
+          <div className="routineActivityFormDiv">
+            <form onSubmit={handleSubmit} className="routineActivityForm">
+              <label htmlFor="activity">choose activity:</label>
+              <select
+                name="activityId"
+                onChange={handleOptionChange}
+                className="activityDrop"
+              >
+                {activities && activities.length
+                  ? activities.map((activity) => {
+                      return (
+                        <option
+                          key={`activity-add-${activity.id}`}
+                          value={activity.id}
+                        >
+                          {activity.name}
+                        </option>
+                      );
+                    })
+                  : null}{" "}
+              </select>{" "}
+              <br></br>
+              <label>count:</label>{" "}
+              <input
+                type="number"
+                name="count"
+                onChange={handleOptionChange}
+                required
+              />{" "}
+              <br></br>
+              <label>duration:</label>
+              <input
+                type="number"
+                name="duration"
+                onChange={handleOptionChange}
+                required
+              />{" "}
+              <br></br>
+              <button
+                type="submit"
+                className="addToButton"
+                onClick={handleClick}
+              >
+                add to routine
+              </button>
+            </form>
+          </div>
+          <div className="attachedRoutineActivitiesDiv">
+            {routineAttached &&
+            routineAttached.activities &&
+            routineAttached.activities.length
+              ? routineAttached.activities.map((activity, i) => {
                   return (
-                    <option
-                      key={`activity-add-${activity.id}`}
-                      value={activity.id}
+                    <div
+                      className="attachedRoutineActivities"
+                      key={`activity-routine${i}`}
                     >
-                      {activity.name}
-                    </option>
+                      <h4
+                        key={`activity-name${i}`}
+                        className="activityRoutineHeader"
+                      >
+                        {activity.name}
+                      </h4>
+                      <p key={`activity-description${i}`}>
+                        {activity.description}
+                      </p>
+                      <p key={`activity-duration${i}`}>
+                        duration: {activity.duration}
+                      </p>
+                      <p key={`activity-count${i}`}>count: {activity.count}</p>
+                      <div className="countButtonDiv">
+                        <Link
+                          to={`/activityedit/${activity.routineActivityId}`}
+                        >
+                          <button className="countButton">
+                            edit count and duration
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   );
                 })
-              : null}{" "}
-          </select>{" "}
-          <br></br>
-          <label>count:</label>{" "}
-          <input
-            type="number"
-            name="count"
-            onChange={handleOptionChange}
-            required
-          />{" "}
-          <br></br>
-          <label>duration:</label>
-          <input
-            type="number"
-            name="duration"
-            onChange={handleOptionChange}
-            required
-          />{" "}
-          <br></br>
-          <button type="submit" className="addToButton" onClick={handleClick}>
-            add to routine
-          </button>
-        </form>
-      </div>
-      <div className="attachedRoutineActivitiesDiv">
-        {routineAttached && routineAttached.activities && routineAttached.activities.length
-          ? routineAttached.activities.map((activity, i) => {
-              return (
-                <div
-                  className="attachedRoutineActivities"
-                  key={`activity-routine${i}`}
-                >
-                  <h4
-                    key={`activity-name${i}`}
-                    className="activityRoutineHeader"
-                  >
-                    {activity.name}
-                  </h4>
-                  <p key={`activity-description${i}`}>{activity.description}</p>
-                  <p key={`activity-duration${i}`}>
-                    duration: {activity.duration}
-                  </p>
-                  <p key={`activity-count${i}`}>count: {activity.count}</p>
-
-                  <Link
-                    to={`/activityedit/${activity.routineActivityId}`}
-                  >
-                    <button>edit count and duration</button>
-                  </Link>
-                </div>
-              );
-            })
-          : null}
-      </div>
-    </>
-    :<p>loading</p>}
-     
+              : null}
+          </div>
+        </>
+      ) : (
+        <p>loading</p>
+      )}
     </>
   );
 };
