@@ -52,6 +52,7 @@ const CreateRoutine = () => {
           <br></br>
           <label htmlFor="isPublic">public?</label>
           <select name="isPublic" onChange={handleChange}>
+            <option value={null}> please select an option below</option>
             <option value={true}>Yes</option>
             <option value={false}>No</option>
           </select>

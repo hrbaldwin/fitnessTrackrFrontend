@@ -14,7 +14,6 @@ const MyRoutines = (props) => {
     console.log(e);
     const deleted = await DeleteRoutine(toDelete, token);
   }
-  console.log(myRoutines);
 
   return (
     <>
